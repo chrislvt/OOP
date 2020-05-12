@@ -15,9 +15,9 @@
 using namespace testing;
 
 
-TEST(ListPushMethodsSuite, PushBackNode)
+TEST(ListPushMethodsSuite, PushBackData)
 {
-    // beginner size = 0
+    // empty list + data
     List<int> list_1;
 
     ASSERT_NO_THROW(list_1.push_back(10));
@@ -28,7 +28,7 @@ TEST(ListPushMethodsSuite, PushBackNode)
     ASSERT_EQ(list_1.get_back(), 10);
 
 
-    // beginner size = 1
+    // full list + data
     List<int> list_2{10};
     auto it_2 = list_2.begin();
 
@@ -44,7 +44,14 @@ TEST(ListPushMethodsSuite, PushBackNode)
 
 TEST(ListPushMethodsSuite, PushBackList)
 {
-    // append full list
+    // empty list + empty list
+    List<int> empty_list_1, empty_list_2;
+
+    ASSERT_NO_THROW(empty_list_1.push_back(empty_list_2));
+    ASSERT_EQ(empty_list_1.get_length(), 0);
+
+
+    // empty + full list
     List<int> list_1;
     List<int> full_list{10, 20, 30};
 
@@ -60,18 +67,30 @@ TEST(ListPushMethodsSuite, PushBackList)
     ASSERT_EQ(it, list_1.begin());
 
 
-    // append empty list
+    // full list + empty
     List<int> list_2{10, 20};
     List<int> empty_list;
 
     ASSERT_NO_THROW(list_2.push_back(empty_list));
     ASSERT_EQ(list_2.get_length(), 2);
+
+
+    // full + full list
+    List<int> list_3{10, 20, 30};
+    List<int> list_4{40, 50, 60};
+
+    ASSERT_NO_THROW(list_3.push_back(list_4));
+
+    ASSERT_EQ(list_3.get_length(), 6);
+
+    ASSERT_EQ(list_3.get_front(), 10);
+    ASSERT_EQ(list_3.get_back(), 60);
 }
 
 
-TEST(ListPushMethodsSuite, PushFrontNode)
+TEST(ListPushMethodsSuite, PushFrontData)
 {
-    // beginner size = 0
+    // empty list + data
     List<int> list_1;
 
     ASSERT_NO_THROW(list_1.push_front(10));
@@ -82,7 +101,7 @@ TEST(ListPushMethodsSuite, PushFrontNode)
     ASSERT_EQ(list_1.get_back(), 10);
 
 
-    // beginner size = 1
+    // full list + data
     List<int> list_2{10};
     auto it_2 = list_2.begin();
 
@@ -98,6 +117,13 @@ TEST(ListPushMethodsSuite, PushFrontNode)
 
 TEST(ListPushMethodsSuite, PushFrontList)
 {
+    // empty + empty list
+    List<int> empty_list_1, empty_list_2;
+
+    ASSERT_NO_THROW(empty_list_1.push_front(empty_list_2));
+    ASSERT_EQ(empty_list_1.get_length(), 0);
+
+
     // empty + full list
     List<int> list_1;
     List<int> full_list{10, 20, 30};
@@ -121,6 +147,19 @@ TEST(ListPushMethodsSuite, PushFrontList)
     ASSERT_EQ(list_2.get_front(), 10);
     ASSERT_EQ(list_2.get_back(), 30);
 
+
+    // full + full list
+    List<int> list_3{10, 20, 30};
+    List<int> list_4{40, 50, 60};
+
+    ASSERT_NO_THROW(list_4.push_front(list_3));
+
+    ASSERT_NE(list_3.begin(), list_4.begin());
+
+    ASSERT_EQ(list_4.get_length(), 6);
+
+    ASSERT_EQ(list_4.get_front(), 10);
+    ASSERT_EQ(list_4.get_back(), 60);
 }
 
 #endif // TESTING_PUSH_H
