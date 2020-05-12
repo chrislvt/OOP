@@ -38,7 +38,6 @@ public:
 
     void push_front(const Type& value);
     void push_front(const List<Type> &list) noexcept;
-    void push_front(Type* array, int size) noexcept;
 
     void pop_back();
     void pop_front();

@@ -276,14 +276,6 @@ void List<Type>::push_front(const List<Type> &list) noexcept
 }
 
 
-template <typename Type>
-void List<Type>::push_front(Type* array, int size) noexcept
-{
-    for (int i = size - 1; i >= 0; i--)
-        push_front(array[i]);
-}
-
-
 // Yeah... Ich weiß... das ist schlecht (pop_back() und pop_front()).
 template <typename Type>
 void List<Type>::pop_back()
