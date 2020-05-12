@@ -1,0 +1,5 @@
+*.exe
+*.pro
+*.pro.user
+*.pri
+*.o
