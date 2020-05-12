@@ -88,4 +88,15 @@ public:
     : ExceptionList(file_name, index, time) {}
 };
 
+
+class EmptyList : public ExceptionList
+{
+public:
+    EmptyList(
+            const char* file_name,
+            const int index,
+            const char* time)
+    : ExceptionList(file_name, index, time) {}
+};
+
 #endif // ERRORS_H

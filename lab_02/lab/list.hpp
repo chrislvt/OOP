@@ -271,17 +271,31 @@ void List<Type>::push_front(const List<Type> &list) noexcept
     if (list.is_empty()) return;
 
     List<Type> front_list(list);
+
     if (is_empty()) tail = front_list.tail;
+
     front_list.tail->setNext(head);
     head = front_list.head;
     count += list.count;
 }
 
 
-// Yeah... Ich weiß... das ist schlecht (pop_back() und pop_front()).
 template <typename Type>
 void List<Type>::pop_back()
 {
+    if (is_empty())
+    {
+        time_t t = time(NULL);
+        throw EmptyList(__FILE__, __LINE__, ctime(&t));
+    }
+    else if (count == 1)
+    {
+        head = nullptr;
+        tail = nullptr;
+        count = 0;
+        return;
+    }
+
     auto current_node = head;
 
     int i = 0;
@@ -290,16 +304,30 @@ void List<Type>::pop_back()
         current_node = current_node->getNext();
         i++;
     }
-
     current_node->removeNext();
     tail = current_node;
+    count -= 1;
 }
 
 
 template <typename Type>
 void List<Type>::pop_front()
 {
+    if (is_empty())
+    {
+        time_t t = time(NULL);
+        throw EmptyList(__FILE__, __LINE__, ctime(&t));
+    }
+    else if (count == 1)
+    {
+        head = nullptr;
+        tail = nullptr;
+        count = 0;
+        return;
+    }
+
     head = head->getNext();
+    count -= 1;
 }
 
 
