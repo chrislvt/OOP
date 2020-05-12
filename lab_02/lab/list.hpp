@@ -268,8 +268,10 @@ void List<Type>::push_front(const Type& value)
 template <typename Type>
 void List<Type>::push_front(const List<Type> &list) noexcept
 {
-    List<Type> front_list(list);
+    if (list.is_empty()) return;
 
+    List<Type> front_list(list);
+    if (is_empty()) tail = front_list.tail;
     front_list.tail->setNext(head);
     head = front_list.head;
     count += list.count;

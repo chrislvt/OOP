@@ -3,3 +3,6 @@
 *.pro.user
 *.pri
 *.o
+*.Debug
+*.Release
+*.stach
