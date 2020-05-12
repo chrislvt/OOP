@@ -236,15 +236,7 @@ template <typename Type>
 void List<Type>::push_back(const List<Type> &list) noexcept
 {
     for(auto it = list.begin(); it != list.end(); it++)
-        push_get_back(*it);
-}
-
-
-template <typename Type>
-void List<Type>::push_back(Type* array, int size) noexcept
-{
-    for (int i = 0; i < size; i++)
-        push_back(array[i]);
+        push_back(*it);
 }
 
 
