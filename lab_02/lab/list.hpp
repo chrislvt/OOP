@@ -412,12 +412,12 @@ List<Type>& List<Type>::operator=(const List<Type>& list)
 template <typename Type>
 List<Type>& List<Type>::operator=(const initializer_list<Type> &init_list)
 {
-    head = nullptr;
-    tail = nullptr;
-    count = 0;
-
+    List new_list;
     for (auto &element : init_list)
-        push_back(element);
+        new_list.push_back(element);
+
+    *this = move(new_list);
+
     return *this;
 }
 
