@@ -399,14 +399,14 @@ ConstIterator<Type> List<Type>::cend() const noexcept
 template <typename Type>
 List<Type>& List<Type>::operator=(const List<Type>& list)
 {
-    if (begin() == list.begin())
-        return *this;
+    List new_list;
+    for (auto &element : list)
+        new_list.push_back(element);
 
-    head = nullptr;
-    tail = nullptr;
-    count = 0;
+    head = new_list.head;
+    tail = new_list.tail;
+    count = new_list.count;
 
-    push_back(list);
     return *this;
 }
 
