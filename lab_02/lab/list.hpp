@@ -131,9 +131,10 @@ List<Type>::List(List<Type>&& list) noexcept
 
 
 template <typename Type>
-List<Type>::List(Iterator<Type> it_begin)
+template <typename I>
+List<Type>::List(const I &it)
 {
-    if (!it_begin)
+    if (!it)
     {
         time_t t = time(NULL);
         throw ConstructorBadArguments(__FILE__, __LINE__, ctime(&t));
@@ -142,18 +143,18 @@ List<Type>::List(Iterator<Type> it_begin)
     try
     {
         count = 1;
-        head.reset(new Node<Type>(*it_begin));
+        head.reset(new Node<Type>(*it));
         shared_ptr<Node<Type>> new_node, current_node = head;
-        auto it = it_begin;
+        auto i = it;
 
-        it++;
-        while(it)
+        i++;
+        while(i)
         {
-            new_node.reset(new Node<Type>(*it));
+            new_node.reset(new Node<Type>(*i));
             current_node->setNext(new_node);
             current_node = current_node->getNext();
             count++;
-            it++;
+            i++;
         }
         tail = current_node;
     }

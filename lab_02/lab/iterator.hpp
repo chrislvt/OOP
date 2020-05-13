@@ -39,14 +39,14 @@ Type Iterator<Type>::next_info()
 
 
 template <typename Type>
-bool Iterator<Type>::operator!=(Iterator<Type> const& other) const noexcept
+bool Iterator<Type>::operator!=(Iterator<Type> const& other) const
 {
     return containter_obj.lock() != other.containter_obj.lock();
 }
 
 
 template <typename Type>
-bool Iterator<Type>::operator==(Iterator const& other) const noexcept
+bool Iterator<Type>::operator==(Iterator const& other) const
 {
     return containter_obj.lock() == other.containter_obj.lock();
 }
@@ -134,7 +134,7 @@ Iterator<Type>& Iterator<Type>::operator++()
 
 
 template <typename Type>
-Iterator<Type> Iterator<Type>::operator++(int) noexcept
+Iterator<Type> Iterator<Type>::operator++(int)
 {
     Iterator<Type> it(*this);
     ++(*this);
@@ -143,7 +143,7 @@ Iterator<Type> Iterator<Type>::operator++(int) noexcept
 
 
 template<typename Type>
-Iterator<Type>::operator bool() const noexcept
+Iterator<Type>::operator bool() const
 {
     return !containter_obj.expired();
 }

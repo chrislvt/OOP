@@ -18,8 +18,8 @@ public:
     Type current_info();
     Type next_info();
 
-    bool operator!=(Iterator<Type> const& other) const noexcept;
-    bool operator==(Iterator const& other) const noexcept;
+    bool operator!=(Iterator<Type> const& other) const;
+    bool operator==(Iterator const& other) const;
 
     Type& operator*();
     const Type& operator*() const;
@@ -27,9 +27,9 @@ public:
     const Type* operator->() const;
 
     Iterator<Type>& operator++();
-    Iterator<Type> operator++(int) noexcept;
+    Iterator<Type> operator++(int);
 
-    operator bool() const noexcept;
+    operator bool() const;
 
 private:
     Iterator(const shared_ptr<Node<Type>> &list) : containter_obj(list) {}

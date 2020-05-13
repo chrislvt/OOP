@@ -22,7 +22,7 @@ public:
     List(initializer_list<Type> list);
     List(Type* array, int size);
     List(List<Type>&& list) noexcept;
-    List(Iterator<Type> it_begin);
+    template <typename I> List(const I &it);
 
     ~List() = default;
 

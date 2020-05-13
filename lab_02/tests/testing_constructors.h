@@ -11,6 +11,8 @@
 #include "errors.h"
 #include "iterator.h"
 #include "iterator.hpp"
+#include "constiterator.h"
+#include "constiterator.hpp"
 
 
 using namespace testing;
@@ -120,16 +122,21 @@ TEST(ListBaseSuite, CreationFromIterator)
 
 
     // size = 2
-    List<int> list_2{1};
-    it = list_1.begin();
+    List<int> list_2{1, 2};
+    Iterator<int> it2 = list_2.begin();
 
-    ASSERT_NO_THROW(List<int> list(it));
-
-    List<int> list_20(it);
-    ASSERT_EQ(list_20.get_length(), 1);
-    ASSERT_EQ(list_20.get_front(), list_20.get_back());
+    List<int> list_20(it2);
+    ASSERT_EQ(list_20.get_length(), 2);
 
     ASSERT_NE(list_2.begin(), list_20.begin());
+
+
+    // Const iterator
+    List<int> list_3{1, 2, 3};
+    ConstIterator<int> c_it = list_3.cbegin();
+
+    List<int> list_4(c_it);
+    ASSERT_EQ(list_4.get_length(), 3);
 }
 
 
