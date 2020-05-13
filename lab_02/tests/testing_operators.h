@@ -17,6 +17,12 @@ using namespace testing;
 
 TEST(ListOperatorsSuite, EqualityListOperator)
 {
+    // empty list = empty list
+    List<int> l1;
+    List<int> l2;
+    ASSERT_NO_THROW(l1 = l2);
+
+
     // empty list = full list
     List<int> list_1{1, 2, 3, 4};
     List<int> list_2;
@@ -49,6 +55,11 @@ TEST(ListOperatorsSuite, EqualityListOperator)
 
 TEST(ListOperatorsSuite, EqualityInitListOperator)
 {
+    // empty list = empty init list
+    List<int> l1;
+    initializer_list<int> i_list = {};
+    ASSERT_NO_THROW(l1 = i_list);
+
     // empty list = full init list
     List<int> list_1;
 
