@@ -438,9 +438,7 @@ List<Type>& List<Type>::operator=(List<Type>&& list)
 template <typename Type>
 List<Type>& List<Type>::operator+(const List<Type>& list)
 {
-    List new_list(*this);
-    new_list.push_back(list);
-    return new_list;
+    return combine(list);
 }
 
 

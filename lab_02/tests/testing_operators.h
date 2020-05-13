@@ -97,7 +97,7 @@ TEST(ListOperatorsSuite, OperatorPlus)
     List<int> l2{4, 5, 6};
     List<int> l3;
 
-    ASSERT_NO_THROW(l1 = l2 + l3);
+    ASSERT_NO_THROW(l3 = l1 + l2);
     ASSERT_EQ(l3.get_length(), 6);
     ASSERT_EQ(l3.get_front(), 1);
     ASSERT_EQ(l3.get_back(), 6);
