@@ -50,6 +50,12 @@ TEST(ListOperatorsSuite, EqualityListOperator)
     ASSERT_NE(list_5.begin(), list_6.begin());
 
     ASSERT_EQ(list_5.get_length(), 3);
+
+    // this list = this list
+    List<int> list_7{6, 6, 6};
+    ASSERT_NO_THROW(list_7 = list_7);
+
+    ASSERT_EQ(list_7.get_length(), 3);
 }
 
 
