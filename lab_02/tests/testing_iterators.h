@@ -25,8 +25,8 @@ TEST(ListIteratorsSuite, OutOfRangeAccess)
 
     ASSERT_THROW(++it_1, BadObjectPtr);
 
-    // How I can catch BadObjectPtr? :")
-    // ASSERT_THROW(it_2++, BadObjectPtr);
+    //How I can catch BadObjectPtr? :")
+    //ASSERT_THROW(it_2++, BadObjectPtr);
 }
 
 

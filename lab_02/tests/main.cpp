@@ -1,7 +1,8 @@
 //#include "testing_constructors.h"
 //#include "testing_iterators.h"
 //#include "testing_push.h"
-#include "testing_pop.h"
+//#include "testing_pop.h"
+#include "testing_operators.h"
 
 
 #include <gtest/gtest.h>

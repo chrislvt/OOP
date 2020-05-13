@@ -52,7 +52,7 @@ public:
     ConstIterator<Type> cend() const noexcept;
 
     List<Type>& operator=(const List<Type>& list);
-    List<Type> operator=(const initializer_list<Type> &init_list);
+    List<Type>& operator=(const initializer_list<Type> &init_list);
 
     List<Type>& operator=(List<Type>&& list);
 

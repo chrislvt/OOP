@@ -139,7 +139,6 @@ List<Type>::List(Iterator<Type> it_begin)
         throw ConstructorBadArguments(__FILE__, __LINE__, ctime(&t));
     }
 
-
     try
     {
         count = 1;
@@ -158,6 +157,7 @@ List<Type>::List(Iterator<Type> it_begin)
         }
         tail = current_node;
     }
+
     catch (const bad_alloc &exc)
     {
         time_t t = time(NULL);
@@ -399,49 +399,26 @@ ConstIterator<Type> List<Type>::cend() const noexcept
 template <typename Type>
 List<Type>& List<Type>::operator=(const List<Type>& list)
 {
-    if (count > list.count)
-    {
-        shared_ptr<Node<Type>> prev_node, cur_node = head;
-        for (auto it = list.begin(); it != end(); it++)
-        {
-            prev_node = cur_node;
-            cur_node->setData(*it);
-            cur_node = cur_node->getNext();
-        }
-        prev_node->setNext(nullptr);
-        tail = prev_node;
-        count = list.count;
-    }
-    else if (count < list.count)
-    {
-        auto list_it = list.begin();
-        for (auto this_it = begin(); this_it != end(); this_it++)
-        {
-            (*this_it) = (*list_it);
-            list_it++;
-        }
-        shared_ptr<Node<Type>> new_node, cur_node = tail;
-        for (; list_it != list.end(); list_it++)
-        {
-            new_node.reset(new Node<Type>(*list_it));
-            cur_node->setNext(new_node);
-            cur_node = cur_node->getNext();
-        }
-        tail = cur_node;
-        count = list.count;
-    }
-    else
-    {
-        auto this_it = begin();
-        for (auto list_it = list.begin(); list_it != list.end(); list_it++)
-        {
-            (*this_it) = (*list_it);
-            this_it++;
-        }
-    }
+    head = nullptr;
+    tail = nullptr;
+    count = 0;
+
+    push_back(list);
     return *this;
 }
 
+
+template <typename Type>
+List<Type>& List<Type>::operator=(const initializer_list<Type> &init_list)
+{
+    head = nullptr;
+    tail = nullptr;
+    count = 0;
+
+    for (auto &element : init_list)
+        push_back(element);
+    return *this;
+}
 
 
 template <typename Type>
@@ -455,15 +432,6 @@ List<Type>& List<Type>::operator=(List<Type>&& list)
     list.tail.reset();
 
     return *this;
-}
-
-
-template <typename Type>
-List<Type> List<Type>::operator=(const initializer_list<Type> &init_list)
-{
-    List new_list(*this);
-    new_list.push_back(init_list);
-    return new_list;
 }
 
 
