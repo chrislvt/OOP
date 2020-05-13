@@ -403,9 +403,7 @@ List<Type>& List<Type>::operator=(const List<Type>& list)
     for (auto &element : list)
         new_list.push_back(element);
 
-    head = new_list.head;
-    tail = new_list.tail;
-    count = new_list.count;
+    *this = move(new_list);
 
     return *this;
 }
