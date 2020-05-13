@@ -370,6 +370,20 @@ void List<Type>::clear() noexcept
 
 
 template <typename Type>
+Iterator<Type> List<Type>::begin() noexcept
+{
+    return Iterator<Type>(head);
+}
+
+
+template <typename Type>
+Iterator<Type> List<Type>::end() noexcept
+{
+    return Iterator<Type>(nullptr);
+}
+
+
+template <typename Type>
 Iterator<Type> List<Type>::begin() const noexcept
 {
     return Iterator<Type>(head);
