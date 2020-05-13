@@ -90,4 +90,18 @@ TEST(ListOperatorsSuite, EqualityInitListOperator)
     ASSERT_EQ(list_5.get_length(), 3);
 }
 
+
+TEST(ListOperatorsSuite, OperatorPlus)
+{
+    List<int> l1{1, 2, 3};
+    List<int> l2{4, 5, 6};
+    List<int> l3;
+
+    ASSERT_NO_THROW(l1 = l2 + l3);
+    ASSERT_EQ(l3.get_length(), 6);
+    ASSERT_EQ(l3.get_front(), 1);
+    ASSERT_EQ(l3.get_back(), 6);
+}
+
+
 #endif // TESTING_OPERATORS_H
